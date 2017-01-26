@@ -1,6 +1,5 @@
 //package Parkeersimulator;
 
-//test1 marc
 
 import java.util.Random;
 import java.awt.*;
