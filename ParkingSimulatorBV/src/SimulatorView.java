@@ -11,6 +11,12 @@ public class SimulatorView extends JFrame {
     private int numberOfOpenSpots;
     private Car[][][] cars;
 
+    /**
+     * Constructor voor objecten van SimulatorView.
+     * @param numberOfFloors
+     * @param numberOfRows
+     * @param numberOfPlaces
+     */
     public SimulatorView(int numberOfFloors, int numberOfRows, int numberOfPlaces) {
         this.numberOfFloors = numberOfFloors;
         this.numberOfRows = numberOfRows;
@@ -28,26 +34,49 @@ public class SimulatorView extends JFrame {
         updateView();
     }
 
+    /**
+     * 
+     */
     public void updateView() {
         carParkView.updateView();
     }
     
+    /**
+     * 
+     * @return
+     */
 	public int getNumberOfFloors() {
         return numberOfFloors;
     }
 
+	/**
+	 * 
+	 * @return
+	 */
     public int getNumberOfRows() {
         return numberOfRows;
     }
 
+    /**
+     * 
+     * @return
+     */
     public int getNumberOfPlaces() {
         return numberOfPlaces;
     }
 
+    /*
+     * 
+     */
     public int getNumberOfOpenSpots(){
     	return numberOfOpenSpots;
     }
     
+    /**
+     * 
+     * @param location
+     * @return
+     */
     public Car getCarAt(Location location) {
         if (!locationIsValid(location)) {
             return null;
@@ -55,6 +84,12 @@ public class SimulatorView extends JFrame {
         return cars[location.getFloor()][location.getRow()][location.getPlace()];
     }
 
+    /**
+     * 
+     * @param location
+     * @param car
+     * @return
+     */
     public boolean setCarAt(Location location, Car car) {
         if (!locationIsValid(location)) {
             return false;
@@ -69,6 +104,11 @@ public class SimulatorView extends JFrame {
         return false;
     }
 
+    /**
+     * 
+     * @param location
+     * @return
+     */
     public Car removeCarAt(Location location) {
         if (!locationIsValid(location)) {
             return null;
@@ -83,6 +123,10 @@ public class SimulatorView extends JFrame {
         return car;
     }
 
+    /**
+     * 
+     * @return
+     */
     public Location getFirstFreeLocation() {
         for (int floor = 0; floor < getNumberOfFloors(); floor++) {
             for (int row = 0; row < getNumberOfRows(); row++) {
@@ -97,6 +141,10 @@ public class SimulatorView extends JFrame {
         return null;
     }
 
+    /**
+     * 
+     * @return
+     */
     public Car getFirstLeavingCar() {
         for (int floor = 0; floor < getNumberOfFloors(); floor++) {
             for (int row = 0; row < getNumberOfRows(); row++) {
@@ -112,6 +160,9 @@ public class SimulatorView extends JFrame {
         return null;
     }
 
+    /**
+     * 
+     */
     public void tick() {
         for (int floor = 0; floor < getNumberOfFloors(); floor++) {
             for (int row = 0; row < getNumberOfRows(); row++) {
@@ -125,7 +176,11 @@ public class SimulatorView extends JFrame {
             }
         }
     }
-
+/**
+ * 
+ * @param location
+ * @return
+ */
     private boolean locationIsValid(Location location) {
         int floor = location.getFloor();
         int row = location.getRow();
@@ -136,6 +191,11 @@ public class SimulatorView extends JFrame {
         return true;
     }
     
+    /**
+     * 
+     * @author Marc Elzinga
+     *
+     */
     private class CarParkView extends JPanel {
         
         private Dimension size;
