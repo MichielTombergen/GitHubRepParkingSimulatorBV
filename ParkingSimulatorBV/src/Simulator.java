@@ -29,11 +29,18 @@ public class Simulator {
     int paymentSpeed = 7; // number of cars that can pay per minute
     int exitSpeed = 5; // number of cars that can leave per minute
 
+    /**
+     * Laat de simulator runnen.
+     * @param args
+     */
     public static void main(String[] args){
     	Simulator mySimulator = new  Simulator();
     	mySimulator.run();
     }
     
+    /**
+     * Dit is de constructor van de simulator.
+     */
     public Simulator() {
         entranceCarQueue = new CarQueue();
         entrancePassQueue = new CarQueue();
@@ -42,12 +49,18 @@ public class Simulator {
         simulatorView = new SimulatorView(3, 6, 30);
     }
 
+    /**
+     * Laat de simulator runnen voor een bepaalde tijd. (Dit moet dan 1 week zijn)
+     */
     public void run() {
         for (int i = 0; i < 10000; i++) {
             tick();
         }
     }
 
+    /**
+     * Laat de tijd tikken en updates de views. 
+     */
     private void tick() {
     	advanceTime();
     	handleExit();
@@ -61,6 +74,9 @@ public class Simulator {
     	handleEntrance();
     }
 
+    /**
+     * Geeft de tijd aan tot de minuut.
+     */
     private void advanceTime(){
         // Advance the time by one minute.
         minute++;
@@ -78,24 +94,36 @@ public class Simulator {
 
     }
 
+    /**
+     * Laat auto's aankomen en binnengaan.
+     */
     private void handleEntrance(){
     	carsArriving();
     	carsEntering(entrancePassQueue);
     	carsEntering(entranceCarQueue);  	
     }
     
+    /**
+     * Laat auto's weggaan en betalen.
+     */
     private void handleExit(){
         carsReadyToLeave();
         carsPaying();
         carsLeaving();
     }
     
+    /**
+     * 
+     */
     private void updateViews(){
     	simulatorView.tick();
         // Update the car park view.
         simulatorView.updateView();	
     }
     
+    /**
+     * Auto's arriveren.
+     */
     private void carsArriving(){
     	int numberOfCars=getNumberOfCars(weekDayArrivals, weekendArrivals);
         addArrivingCars(numberOfCars, AD_HOC);    	
@@ -103,6 +131,10 @@ public class Simulator {
         addArrivingCars(numberOfCars, PASS);    	
     }
 
+    /**
+     * Laat auto's de parkeergarage ingaan.
+     * @param queue
+     */
     private void carsEntering(CarQueue queue){
         int i=0;
         // Remove car from the front of the queue and assign to a parking space.
@@ -116,6 +148,10 @@ public class Simulator {
         }
     }
     
+    /**
+     * Laat de eerste car die weggaat betalen als hij dat niet gedaan heeft anders laat je hem de
+     * parkeergarage verlaten.
+     */
     private void carsReadyToLeave(){
         // Add leaving cars to the payment queue.
         Car car = simulatorView.getFirstLeavingCar();
@@ -131,6 +167,9 @@ public class Simulator {
         }
     }
 
+    /**
+     * Laat auto's betalen.
+     */
     private void carsPaying(){
         // Let cars pay.
     	int i=0;
@@ -142,6 +181,9 @@ public class Simulator {
     	}
     }
     
+    /**
+     * Laat auto's weggaan.
+     */
     private void carsLeaving(){
         // Let cars leave.
     	int i=0;
@@ -151,6 +193,12 @@ public class Simulator {
     	}	
     }
     
+    /**
+     * Bereken het aantal auto's per uur.
+     * @param weekDay
+     * @param weekend
+     * @return het aantal auto's per uur.
+     */
     private int getNumberOfCars(int weekDay, int weekend){
         Random random = new Random();
 
@@ -165,6 +213,11 @@ public class Simulator {
         return (int)Math.round(numberOfCarsPerHour / 60);	
     }
     
+    /**
+     * Voeg aankomende auto's toe.
+     * @param numberOfCars
+     * @param type
+     */
     private void addArrivingCars(int numberOfCars, String type){
         // Add the cars to the back of the queue.
     	switch(type) {
@@ -181,6 +234,10 @@ public class Simulator {
     	}
     }
     
+    /**
+     * Verwijder een auto van zijn locatie en laat hem in de rij van de uitgang staan. 
+     * @param car
+     */
     private void carLeavesSpot(Car car){
     	simulatorView.removeCarAt(car.getLocation());
         exitCarQueue.addCar(car);

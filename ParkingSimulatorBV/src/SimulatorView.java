@@ -3,6 +3,9 @@
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * Deze klasse is een subklasse van JFrame
+ */
 public class SimulatorView extends JFrame {
     private CarParkView carParkView;
     private int numberOfFloors;
@@ -35,38 +38,35 @@ public class SimulatorView extends JFrame {
     }
 
     /**
-     * 
+     * Roep de updateView in carParkView.
      */
     public void updateView() {
         carParkView.updateView();
     }
     
     /**
-     * 
-     * @return
+     * @return Het aantal verdiepingen.
      */
 	public int getNumberOfFloors() {
         return numberOfFloors;
     }
 
 	/**
-	 * 
-	 * @return
+	 * @return het aantal rijen.
 	 */
     public int getNumberOfRows() {
         return numberOfRows;
     }
 
     /**
-     * 
-     * @return
+     * @return het aantal plekken.
      */
     public int getNumberOfPlaces() {
         return numberOfPlaces;
     }
 
     /*
-     * 
+     * @return het aantal open plekken.
      */
     public int getNumberOfOpenSpots(){
     	return numberOfOpenSpots;
@@ -75,7 +75,7 @@ public class SimulatorView extends JFrame {
     /**
      * 
      * @param location
-     * @return
+     * @return de auto die op die locatie zit.
      */
     public Car getCarAt(Location location) {
         if (!locationIsValid(location)) {
@@ -85,10 +85,10 @@ public class SimulatorView extends JFrame {
     }
 
     /**
-     * 
+     * Plaats een auto op een bepaalde locatie.
      * @param location
      * @param car
-     * @return
+     * @return true of false of er wel of niet een auto kan worden geplaatst.
      */
     public boolean setCarAt(Location location, Car car) {
         if (!locationIsValid(location)) {
@@ -105,7 +105,7 @@ public class SimulatorView extends JFrame {
     }
 
     /**
-     * 
+     * Verwijder een auto van een bepaalde locatie.
      * @param location
      * @return
      */
@@ -124,8 +124,8 @@ public class SimulatorView extends JFrame {
     }
 
     /**
-     * 
-     * @return
+     * Wat is de eerste vrije locatie.
+     * @return de eerste vrije locatie.
      */
     public Location getFirstFreeLocation() {
         for (int floor = 0; floor < getNumberOfFloors(); floor++) {
@@ -142,8 +142,8 @@ public class SimulatorView extends JFrame {
     }
 
     /**
-     * 
-     * @return
+     * Welke auto gaat als eerstvolgende weg?
+     * @return de auto die weggaat.
      */
     public Car getFirstLeavingCar() {
         for (int floor = 0; floor < getNumberOfFloors(); floor++) {
@@ -161,7 +161,8 @@ public class SimulatorView extends JFrame {
     }
 
     /**
-     * 
+     * Deze methode zorgt ervoor dat voor elke auto de methode tick() in Car word aangeroepen
+     * en de tijd laat tikken. en dus de minutesleft variabele word afgetrokken.
      */
     public void tick() {
         for (int floor = 0; floor < getNumberOfFloors(); floor++) {
@@ -177,9 +178,9 @@ public class SimulatorView extends JFrame {
         }
     }
 /**
- * 
+ * Klopt de gegevenlocatie? Is de waarde groter dan 0 en kleiner dan het aantal plekken?
  * @param location
- * @return
+ * @return true of false
  */
     private boolean locationIsValid(Location location) {
         int floor = location.getFloor();
@@ -192,7 +193,7 @@ public class SimulatorView extends JFrame {
     }
     
     /**
-     * 
+     * Deze class is een subclass van de class Jpanel.
      * @author Marc Elzinga
      *
      */
@@ -234,6 +235,9 @@ public class SimulatorView extends JFrame {
             }
         }
     
+        /**
+         * Update de view van de simulatie. Welke hokken wit of de kleur die er bij past.
+         */
         public void updateView() {
             // Create a new car park image if the size has changed.
             if (!size.equals(getSize())) {
