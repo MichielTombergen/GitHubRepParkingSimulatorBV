@@ -162,7 +162,7 @@ public class ViewSimulatorView extends JFrame {
 
     /**
      * Deze methode zorgt ervoor dat voor elke auto de methode tick() in Car word aangeroepen
-     * en de tijd laat tikken. en dus de minutesleft variabele word afgetrokken.
+     * en de tijd laat tikken. en dus van de minutesleft variabele word afgetrokken.
      */
     public void tick() {
         for (int floor = 0; floor < getNumberOfFloors(); floor++) {
