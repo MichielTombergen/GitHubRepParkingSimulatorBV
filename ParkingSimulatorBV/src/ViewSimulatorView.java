@@ -6,13 +6,13 @@ import java.awt.*;
 /**
  * Deze klasse is een subklasse van JFrame
  */
-public class SimulatorView extends JFrame {
+public class ViewSimulatorView extends JFrame {
     private CarParkView carParkView;
     private int numberOfFloors;
     private int numberOfRows;
     private int numberOfPlaces;
     private int numberOfOpenSpots;
-    private Car[][][] cars;
+    private ModelCar[][][] cars;
 
     /**
      * Constructor voor objecten van SimulatorView.
@@ -20,12 +20,12 @@ public class SimulatorView extends JFrame {
      * @param numberOfRows
      * @param numberOfPlaces
      */
-    public SimulatorView(int numberOfFloors, int numberOfRows, int numberOfPlaces) {
+    public ViewSimulatorView(int numberOfFloors, int numberOfRows, int numberOfPlaces) {
         this.numberOfFloors = numberOfFloors;
         this.numberOfRows = numberOfRows;
         this.numberOfPlaces = numberOfPlaces;
         this.numberOfOpenSpots =numberOfFloors*numberOfRows*numberOfPlaces;
-        cars = new Car[numberOfFloors][numberOfRows][numberOfPlaces];
+        cars = new ModelCar[numberOfFloors][numberOfRows][numberOfPlaces];
         
         carParkView = new CarParkView();
 
@@ -77,7 +77,7 @@ public class SimulatorView extends JFrame {
      * @param location
      * @return de auto die op die locatie zit.
      */
-    public Car getCarAt(Location location) {
+    public ModelCar getCarAt(ModelLocation location) {
         if (!locationIsValid(location)) {
             return null;
         }
@@ -90,11 +90,11 @@ public class SimulatorView extends JFrame {
      * @param car
      * @return true of false of er wel of niet een auto kan worden geplaatst.
      */
-    public boolean setCarAt(Location location, Car car) {
+    public boolean setCarAt(ModelLocation location, ModelCar car) {
         if (!locationIsValid(location)) {
             return false;
         }
-        Car oldCar = getCarAt(location);
+        ModelCar oldCar = getCarAt(location);
         if (oldCar == null) {
             cars[location.getFloor()][location.getRow()][location.getPlace()] = car;
             car.setLocation(location);
@@ -109,11 +109,11 @@ public class SimulatorView extends JFrame {
      * @param location
      * @return
      */
-    public Car removeCarAt(Location location) {
+    public ModelCar removeCarAt(ModelLocation location) {
         if (!locationIsValid(location)) {
             return null;
         }
-        Car car = getCarAt(location);
+        ModelCar car = getCarAt(location);
         if (car == null) {
             return null;
         }
@@ -127,11 +127,11 @@ public class SimulatorView extends JFrame {
      * Wat is de eerste vrije locatie.
      * @return de eerste vrije locatie.
      */
-    public Location getFirstFreeLocation() {
+    public ModelLocation getFirstFreeLocation() {
         for (int floor = 0; floor < getNumberOfFloors(); floor++) {
             for (int row = 0; row < getNumberOfRows(); row++) {
                 for (int place = 0; place < getNumberOfPlaces(); place++) {
-                    Location location = new Location(floor, row, place);
+                    ModelLocation location = new ModelLocation(floor, row, place);
                     if (getCarAt(location) == null) {
                         return location;
                     }
@@ -145,12 +145,12 @@ public class SimulatorView extends JFrame {
      * Welke auto gaat als eerstvolgende weg?
      * @return de auto die weggaat.
      */
-    public Car getFirstLeavingCar() {
+    public ModelCar getFirstLeavingCar() {
         for (int floor = 0; floor < getNumberOfFloors(); floor++) {
             for (int row = 0; row < getNumberOfRows(); row++) {
                 for (int place = 0; place < getNumberOfPlaces(); place++) {
-                    Location location = new Location(floor, row, place);
-                    Car car = getCarAt(location);
+                    ModelLocation location = new ModelLocation(floor, row, place);
+                    ModelCar car = getCarAt(location);
                     if (car != null && car.getMinutesLeft() <= 0 && !car.getIsPaying()) {
                         return car;
                     }
@@ -168,8 +168,8 @@ public class SimulatorView extends JFrame {
         for (int floor = 0; floor < getNumberOfFloors(); floor++) {
             for (int row = 0; row < getNumberOfRows(); row++) {
                 for (int place = 0; place < getNumberOfPlaces(); place++) {
-                    Location location = new Location(floor, row, place);
-                    Car car = getCarAt(location);
+                    ModelLocation location = new ModelLocation(floor, row, place);
+                    ModelCar car = getCarAt(location);
                     if (car != null) {
                         car.tick();
                     }
@@ -182,7 +182,7 @@ public class SimulatorView extends JFrame {
  * @param location
  * @return true of false
  */
-    private boolean locationIsValid(Location location) {
+    private boolean locationIsValid(ModelLocation location) {
         int floor = location.getFloor();
         int row = location.getRow();
         int place = location.getPlace();
@@ -248,8 +248,8 @@ public class SimulatorView extends JFrame {
             for(int floor = 0; floor < getNumberOfFloors(); floor++) {
                 for(int row = 0; row < getNumberOfRows(); row++) {
                     for(int place = 0; place < getNumberOfPlaces(); place++) {
-                        Location location = new Location(floor, row, place);
-                        Car car = getCarAt(location);
+                        ModelLocation location = new ModelLocation(floor, row, place);
+                        ModelCar car = getCarAt(location);
                         Color color = car == null ? Color.white : car.getColor();
                         drawPlace(graphics, location, color);
                     }
@@ -261,7 +261,7 @@ public class SimulatorView extends JFrame {
         /**
          * Paint a place on this car park view in a given color.
          */
-        private void drawPlace(Graphics graphics, Location location, Color color) {
+        private void drawPlace(Graphics graphics, ModelLocation location, Color color) {
             graphics.setColor(color);
             graphics.fillRect(
                     location.getFloor() * 260 + (1 + (int)Math.floor(location.getRow() * 0.5)) * 75 + (location.getRow() % 2) * 20,

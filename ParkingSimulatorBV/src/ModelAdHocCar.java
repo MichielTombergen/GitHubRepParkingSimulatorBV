@@ -9,13 +9,13 @@ import java.awt.*;
  * voegt auto's zonder parking pass toe.
  *
  */
-public class AdHocCar extends Car {
+public class ModelAdHocCar extends ModelCar {
 	private static final Color COLOR=Color.red;
 	
 	/**
 	 * Constructor voor objecten van class AdHocCar.
 	 */
-    public AdHocCar() {
+    public ModelAdHocCar() {
     	Random random = new Random();
     	int stayMinutes = (int) (15 + random.nextFloat() * 3 * 60);
         this.setMinutesLeft(stayMinutes);

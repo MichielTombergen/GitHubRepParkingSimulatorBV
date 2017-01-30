@@ -2,21 +2,21 @@
 import java.util.LinkedList;
 import java.util.Queue;
 
-public class CarQueue {
-    private Queue<Car> queue = new LinkedList<>();
+public class ModelCarQueue {
+    private Queue<ModelCar> queue = new LinkedList<>();
 
     /**
      * Voeg een auto toe aan de rij.
      * @param car
      */
-    public boolean addCar(Car car) {
+    public boolean addCar(ModelCar car) {
         return queue.add(car);
     }
 
     /**
      * Verwijder de eerste auto uit de rij.
      */
-    public Car removeCar() {
+    public ModelCar removeCar() {
         return queue.poll();
     }
 

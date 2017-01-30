@@ -23,7 +23,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JMenu;
 import javax.swing.JProgressBar;
 
-public class Frame1 {
+public class ViewConfigurationInterface {
 
 	protected static final String ParentComponent = null;
 	private JFrame frame;
@@ -35,7 +35,7 @@ public class Frame1 {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Frame1 window = new Frame1();
+					ViewConfigurationInterface window = new ViewConfigurationInterface();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -47,7 +47,7 @@ public class Frame1 {
 	/**
 	 * Create the application.
 	 */
-	public Frame1() {
+	public ViewConfigurationInterface() {
 		initialize();
 	}
 
@@ -66,7 +66,7 @@ public class Frame1 {
 		btnSubmit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				frame.dispose();
-				Simulator mysimulator = new Simulator();
+				ControllerSimulator mysimulator = new ControllerSimulator();
 				mysimulator.run();
 			}
 		});

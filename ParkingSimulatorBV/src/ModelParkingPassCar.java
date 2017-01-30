@@ -8,13 +8,13 @@ import java.awt.*;
  * @author Marc Elzinga
  *
  */
-public class ParkingPassCar extends Car {
+public class ModelParkingPassCar extends ModelCar {
 	private static final Color COLOR=Color.blue;
 	
 	/**
 	 * constructor voor objecten van ParkingPassCar.
 	 */
-    public ParkingPassCar() {
+    public ModelParkingPassCar() {
     	Random random = new Random();
     	int stayMinutes = (int) (15 + random.nextFloat() * 3 * 60);
         this.setMinutesLeft(stayMinutes);

@@ -6,9 +6,9 @@ import java.awt.*;
  * Dit is een abstracte class met methodes voor Auto's in de
  * simulatie.
  */
-public abstract class Car {
+public abstract class ModelCar {
 
-    private Location location;
+    private ModelLocation location;
     private int minutesLeft;
     private boolean isPaying;
     private boolean hasToPay;
@@ -16,7 +16,7 @@ public abstract class Car {
     /**
      * Constructor for objects of class Car
      */
-    public Car() {
+    public ModelCar() {
 
     	
     }
@@ -25,7 +25,7 @@ public abstract class Car {
      * Return de locatie waar de auto zich bevind.
      * @return de locatie.
      */
-    public Location getLocation() {
+    public ModelLocation getLocation() {
         return location;
     }
 
@@ -33,7 +33,7 @@ public abstract class Car {
      * Stel de locatie van de auto vast.
      * @param location
      */
-    public void setLocation(Location location) {
+    public void setLocation(ModelLocation location) {
         this.location = location;
     }
 

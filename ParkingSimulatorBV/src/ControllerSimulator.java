@@ -2,17 +2,17 @@
 
 import java.util.Random;
 
-public class Simulator {
+public class ControllerSimulator {
 
 	private static final String AD_HOC = "1";
 	private static final String PASS = "2";
 	
 	
-	private CarQueue entranceCarQueue;
-    private CarQueue entrancePassQueue;
-    private CarQueue paymentCarQueue;
-    private CarQueue exitCarQueue;
-    private SimulatorView simulatorView;
+	private ModelCarQueue entranceCarQueue;
+    private ModelCarQueue entrancePassQueue;
+    private ModelCarQueue paymentCarQueue;
+    private ModelCarQueue exitCarQueue;
+    private ViewSimulatorView simulatorView;
 
     private int day = 0;
     private int hour = 0;
@@ -34,19 +34,19 @@ public class Simulator {
      * @param args
      */
     public static void main(String[] args){
-    	Simulator mySimulator = new  Simulator();
+    	ControllerSimulator mySimulator = new  ControllerSimulator();
     	mySimulator.run();
     }
     
     /**
      * Dit is de constructor van de simulator.
      */
-    public Simulator() {
-        entranceCarQueue = new CarQueue();
-        entrancePassQueue = new CarQueue();
-        paymentCarQueue = new CarQueue();
-        exitCarQueue = new CarQueue();
-        simulatorView = new SimulatorView(3, 6, 30);
+    public ControllerSimulator() {
+        entranceCarQueue = new ModelCarQueue();
+        entrancePassQueue = new ModelCarQueue();
+        paymentCarQueue = new ModelCarQueue();
+        exitCarQueue = new ModelCarQueue();
+        simulatorView = new ViewSimulatorView(3, 6, 30);
     }
 
     /**
@@ -135,14 +135,14 @@ public class Simulator {
      * Laat auto's de parkeergarage ingaan.
      * @param queue
      */
-    private void carsEntering(CarQueue queue){
+    private void carsEntering(ModelCarQueue queue){
         int i=0;
         // Remove car from the front of the queue and assign to a parking space.
     	while (queue.carsInQueue()>0 && 
     			simulatorView.getNumberOfOpenSpots()>0 && 
     			i<enterSpeed) {
-            Car car = queue.removeCar();
-            Location freeLocation = simulatorView.getFirstFreeLocation();
+            ModelCar car = queue.removeCar();
+            ModelLocation freeLocation = simulatorView.getFirstFreeLocation();
             simulatorView.setCarAt(freeLocation, car);
             i++;
         }
@@ -154,7 +154,7 @@ public class Simulator {
      */
     private void carsReadyToLeave(){
         // Add leaving cars to the payment queue.
-        Car car = simulatorView.getFirstLeavingCar();
+        ModelCar car = simulatorView.getFirstLeavingCar();
         while (car!=null) {
         	if (car.getHasToPay()){
 	            car.setIsPaying(true);
@@ -174,7 +174,7 @@ public class Simulator {
         // Let cars pay.
     	int i=0;
     	while (paymentCarQueue.carsInQueue()>0 && i < paymentSpeed){
-            Car car = paymentCarQueue.removeCar();
+            ModelCar car = paymentCarQueue.removeCar();
             // TODO Handle payment.
             carLeavesSpot(car);
             i++;
@@ -223,12 +223,12 @@ public class Simulator {
     	switch(type) {
     	case AD_HOC: 
             for (int i = 0; i < numberOfCars; i++) {
-            	entranceCarQueue.addCar(new AdHocCar());
+            	entranceCarQueue.addCar(new ModelAdHocCar());
             }
             break;
     	case PASS:
             for (int i = 0; i < numberOfCars; i++) {
-            	entrancePassQueue.addCar(new ParkingPassCar());
+            	entrancePassQueue.addCar(new ModelParkingPassCar());
             }
             break;	            
     	}
@@ -238,7 +238,7 @@ public class Simulator {
      * Verwijder een auto van zijn locatie en laat hem in de rij van de uitgang staan. 
      * @param car
      */
-    private void carLeavesSpot(Car car){
+    private void carLeavesSpot(ModelCar car){
     	simulatorView.removeCarAt(car.getLocation());
         exitCarQueue.addCar(car);
     }
