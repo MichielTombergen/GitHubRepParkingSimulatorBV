@@ -1,5 +1,5 @@
 //package Parkeersimulator;
-// test marc
+// test van marc
 import java.util.Random;
 
 public class Simulator {
