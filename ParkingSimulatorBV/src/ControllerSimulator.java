@@ -1,7 +1,7 @@
 //package Parkeersimulator;
 
 import java.util.Random;
-
+//ga weg
 public class ControllerSimulator {
 
 	private static final String AD_HOC = "1";
