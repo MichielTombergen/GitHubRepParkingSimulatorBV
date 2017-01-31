@@ -6,8 +6,17 @@ public class Model extends AbstractModel{
     private int hour = 0;
     private int minute = 0;
     private int tickPause = 100;
+    private boolean run;
 	
 	public Model() {
+	}
+	
+	public void start() {
+		new Thread(this).start();
+	}
+	
+	public void stop() {
+		run=false;
 	}
 	
 	public void run() {

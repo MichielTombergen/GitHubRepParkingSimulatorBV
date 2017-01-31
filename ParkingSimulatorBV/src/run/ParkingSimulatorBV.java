@@ -10,7 +10,7 @@ public class ParkingSimulatorBV {
 	private Model model;
 	private Controller controller;
 	private AbstractView simulatorview;
-	private AbstractView configurationinterface;
+	private AbstractView configurationview;
 	private JFrame screen;
 	
 	public ParkingSimulatorBV() {
@@ -18,8 +18,19 @@ public class ParkingSimulatorBV {
 		model = new Model();
 		controller = new Controller(model);
 		simulatorview = new AbstractView(model);
-		configurationinterface = new AbstractView(model);
-
+		configurationview = new AbstractView(model);
+		screen=new JFrame("Model View Controller/Dynamic Model with thread");
+		screen.setSize(450, 285);
+		screen.setResizable(false);
+		screen.setLayout(null);
+		screen.getContentPane().add(simulatorview);
+		screen.getContentPane().add(configurationview);
+		screen.getContentPane().add(controller);
+		simulatorview.setBounds(10, 10, 200, 200);
+		configurationview.setBounds(230, 10, 200, 200);
+		controller.setBounds(0, 210, 450, 50);
+		screen.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		screen.setVisible(true);
 	}
 	
 	public static void main(String[] args) {
