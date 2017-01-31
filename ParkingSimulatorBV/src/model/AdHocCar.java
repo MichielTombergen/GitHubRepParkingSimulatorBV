@@ -1,3 +1,4 @@
+package model;
 //package Parkeersimulator;
 
 
@@ -9,13 +10,13 @@ import java.awt.*;
  * voegt auto's zonder parking pass toe.
  *
  */
-public class ModelAdHocCar extends ModelCar {
+public class AdHocCar extends Car {
 	private static final Color COLOR=Color.red;
 	
 	/**
 	 * Constructor voor objecten van class AdHocCar.
 	 */
-    public ModelAdHocCar() {
+    public AdHocCar() {
     	Random random = new Random();
     	int stayMinutes = (int) (15 + random.nextFloat() * 3 * 60);
         this.setMinutesLeft(stayMinutes);

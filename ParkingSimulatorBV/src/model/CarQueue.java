@@ -1,22 +1,23 @@
+package model;
 //package Parkeersimulator;
 import java.util.LinkedList;
 import java.util.Queue;
 
-public class ModelCarQueue {
-    private Queue<ModelCar> queue = new LinkedList<>();
+public class CarQueue {
+    private Queue<Car> queue = new LinkedList<>();
 
     /**
      * Voeg een auto toe aan de rij.
      * @param car
      */
-    public boolean addCar(ModelCar car) {
+    public boolean addCar(Car car) {
         return queue.add(car);
     }
 
     /**
      * Verwijder de eerste auto uit de rij.
      */
-    public ModelCar removeCar() {
+    public Car removeCar() {
         return queue.poll();
     }
 

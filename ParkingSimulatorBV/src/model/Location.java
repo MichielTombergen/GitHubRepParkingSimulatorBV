@@ -1,6 +1,7 @@
+package model;
 //package Parkeersimulator;
 
-public class ModelLocation {
+public class Location {
 
     private int floor;
     private int row;
@@ -9,7 +10,7 @@ public class ModelLocation {
     /**
      * Constructor for objects of class Location
      */
-    public ModelLocation(int floor, int row, int place) {
+    public Location(int floor, int row, int place) {
         this.floor = floor;
         this.row = row;
         this.place = place;
@@ -19,8 +20,8 @@ public class ModelLocation {
      * Implement content equality.
      */
     public boolean equals(Object obj) {
-        if(obj instanceof ModelLocation) {
-            ModelLocation other = (ModelLocation) obj;
+        if(obj instanceof Location) {
+            Location other = (Location) obj;
             return floor == other.getFloor() && row == other.getRow() && place == other.getPlace();
         }
         else {

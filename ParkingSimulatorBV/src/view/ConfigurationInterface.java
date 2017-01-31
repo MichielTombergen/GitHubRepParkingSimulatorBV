@@ -1,3 +1,4 @@
+package view;
 
 
 import java.awt.EventQueue;
@@ -23,7 +24,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JMenu;
 import javax.swing.JProgressBar;
 
-public class ViewConfigurationInterface {
+public class ConfigurationInterface {
 
 	protected static final String ParentComponent = null;
 	private JFrame frame;
@@ -35,7 +36,7 @@ public class ViewConfigurationInterface {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					ViewConfigurationInterface window = new ViewConfigurationInterface();
+					ConfigurationInterface window = new ConfigurationInterface();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -47,7 +48,7 @@ public class ViewConfigurationInterface {
 	/**
 	 * Create the application.
 	 */
-	public ViewConfigurationInterface() {
+	public ConfigurationInterface() {
 		initialize();
 	}
 
@@ -66,7 +67,7 @@ public class ViewConfigurationInterface {
 		btnSubmit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				frame.dispose();
-				ControllerSimulator mysimulator = new ControllerSimulator();
+				Simulator mysimulator = new Simulator();
 				mysimulator.run();
 			}
 		});

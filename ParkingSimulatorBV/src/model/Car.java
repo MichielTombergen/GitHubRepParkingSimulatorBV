@@ -1,3 +1,4 @@
+package model;
 //package Parkeersimulator;
 
 import java.awt.*;
@@ -6,9 +7,9 @@ import java.awt.*;
  * Dit is een abstracte class met methodes voor Auto's in de
  * simulatie.
  */
-public abstract class ModelCar {
+public abstract class Car {
 
-    private ModelLocation location;
+    private Location location;
     private int minutesLeft;
     private boolean isPaying;
     private boolean hasToPay;
@@ -16,7 +17,7 @@ public abstract class ModelCar {
     /**
      * Constructor for objects of class Car
      */
-    public ModelCar() {
+    public Car() {
 
     	
     }
@@ -25,7 +26,7 @@ public abstract class ModelCar {
      * Return de locatie waar de auto zich bevind.
      * @return de locatie.
      */
-    public ModelLocation getLocation() {
+    public Location getLocation() {
         return location;
     }
 
@@ -33,7 +34,7 @@ public abstract class ModelCar {
      * Stel de locatie van de auto vast.
      * @param location
      */
-    public void setLocation(ModelLocation location) {
+    public void setLocation(Location location) {
         this.location = location;
     }
 
