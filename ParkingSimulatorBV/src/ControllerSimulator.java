@@ -30,15 +30,6 @@ public class ControllerSimulator {
     int exitSpeed = 5; // number of cars that can leave per minute
 
     /**
-     * Laat de simulator runnen.
-     * @param args
-     */
-    public static void main(String[] args){
-    	ControllerSimulator mySimulator = new  ControllerSimulator();
-    	mySimulator.run();
-    }
-    
-    /**
      * Dit is de constructor van de simulator.
      */
     public ControllerSimulator() {
