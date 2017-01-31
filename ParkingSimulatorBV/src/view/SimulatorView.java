@@ -3,11 +3,12 @@ package view;
 
 import javax.swing.*;
 import java.awt.*;
+import model.*;
 
 /**
  * Deze klasse is een subklasse van JFrame
  */
-public class SimulatorView extends JFrame {
+public class SimulatorView extends AbstractView {
     private CarParkView carParkView;
     private int numberOfFloors;
     private int numberOfRows;
