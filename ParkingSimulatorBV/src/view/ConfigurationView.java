@@ -1,9 +1,6 @@
 package view;
 
-
 import java.awt.EventQueue;
-
-
 import javax.swing.JFrame;
 import javax.swing.JButton;
 import java.awt.Font;
@@ -24,7 +21,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JMenu;
 import javax.swing.JProgressBar;
 
-public class ConfigurationInterface {
+public class ConfigurationView {
 
 	protected static final String ParentComponent = null;
 	private JFrame frame;
@@ -36,7 +33,7 @@ public class ConfigurationInterface {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					ConfigurationInterface window = new ConfigurationInterface();
+					ConfigurationView window = new ConfigurationView();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -48,7 +45,7 @@ public class ConfigurationInterface {
 	/**
 	 * Create the application.
 	 */
-	public ConfigurationInterface() {
+	public ConfigurationView() {
 		initialize();
 	}
 
