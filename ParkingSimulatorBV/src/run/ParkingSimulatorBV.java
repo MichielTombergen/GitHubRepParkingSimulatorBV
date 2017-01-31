@@ -11,6 +11,7 @@ public class ParkingSimulatorBV {
 	private Controller controller;
 	private AbstractView simulatorview;
 	private AbstractView configurationinterface;
+	private JFrame screen;
 	
 	public ParkingSimulatorBV() {
 		
