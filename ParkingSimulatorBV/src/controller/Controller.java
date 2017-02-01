@@ -19,9 +19,9 @@ public class Controller extends AbstractController implements ActionListener {
 	
 	public CarQueue entranceCarQueue;
     public CarQueue entrancePassQueue;
-    private CarQueue paymentCarQueue;
-    private CarQueue exitCarQueue;
-    private SimulatorView simulatorView;
+    public CarQueue paymentCarQueue;
+    public CarQueue exitCarQueue;
+    public SimulatorView simulatorView;
 	
 	public Controller(Model model) {
 		super(model);
