@@ -1,7 +1,6 @@
 package view;
 
 import javax.swing.*;
-
 import model.*;
 
 public abstract class AbstractView extends JPanel implements Observer {

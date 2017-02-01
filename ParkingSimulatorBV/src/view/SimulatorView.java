@@ -1,7 +1,5 @@
 package view;
-//package Parkeersimulator;
 
-import javax.swing.*;
 import java.awt.*;
 import model.*;
 
@@ -9,12 +7,18 @@ import model.*;
  * Deze klasse is een subklasse van JFrame
  */
 public class SimulatorView extends AbstractView {
+	
     private CarParkView carParkView;
     private int numberOfFloors;
     private int numberOfRows;
     private int numberOfPlaces;
     private int numberOfOpenSpots;
     private Car[][][] cars;
+    
+	public SimulatorView(Model model) {
+		super(model);
+		setSize(200, 200);
+	}
 
     /**
      * Constructor voor objecten van SimulatorView.
