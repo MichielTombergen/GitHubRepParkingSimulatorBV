@@ -46,6 +46,7 @@ public class Model extends AbstractModel implements Runnable{
 			} catch (Exception e) {} 
 		}
 	}
+	
     /**
      * Laat de tijd tikken en updates de views. 
      */
