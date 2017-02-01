@@ -3,7 +3,7 @@ package model;
 import model.*;
 import view.*;
 
-public class Model extends AbstractModel{
+public class Model extends AbstractModel implements Runnable{
 
     private int day = 0;
     private int hour = 0;
