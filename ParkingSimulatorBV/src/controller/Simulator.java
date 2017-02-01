@@ -9,12 +9,6 @@ public class Simulator {
 	private static final String AD_HOC = "1";
 	private static final String PASS = "2";
 
-    private int day = 0;
-    private int hour = 0;
-    private int minute = 0;
-
-    private int tickPause = 100;
-
     int weekDayArrivals= 100; // average number of arriving cars per hour
     int weekendArrivals = 200; // average number of arriving cars per hour
     int weekDayPassArrivals= 50; // average number of arriving cars per hour
