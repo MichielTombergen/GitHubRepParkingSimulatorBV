@@ -4,7 +4,7 @@ import java.util.*;
 import javax.swing.*;
 import java.awt.*;
 import model.*;
-
+import java.*;
 /**
  * Deze klasse is een subklasse van JFrame
  */
