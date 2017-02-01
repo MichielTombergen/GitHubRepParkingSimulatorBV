@@ -33,8 +33,6 @@ public class Controller extends AbstractController implements ActionListener {
 		stop.addActionListener(this);
 		
 		this.setLayout(null);
-		add(mineen);
-		add(pluseen);
 		add(start);
 		add(stop);
 		mineen.setBounds(50, 10, 70, 30);
