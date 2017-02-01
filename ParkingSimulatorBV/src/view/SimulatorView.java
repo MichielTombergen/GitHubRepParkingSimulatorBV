@@ -1,32 +1,27 @@
 package view;
 
+import java.util.*;
+import javax.swing.*;
 import java.awt.*;
 import model.*;
 
 /**
  * Deze klasse is een subklasse van JFrame
  */
-public class SimulatorView extends AbstractView {
+public class SimulatorView extends AbstractView{
+	private static final long serialVersionUID = -2767764579227738552L;
 	
-    private CarParkView carParkView;
+    public CarParkView carParkView;
     private int numberOfFloors;
     private int numberOfRows;
     private int numberOfPlaces;
     private int numberOfOpenSpots;
     private Car[][][] cars;
     
-	public SimulatorView(Model model) {
+	public SimulatorView(Model model, int numberOfFloors, int numberOfRows, int numberOfPlaces) {
 		super(model);
 		setSize(200, 200);
-	}
-
-    /**
-     * Constructor voor objecten van SimulatorView.
-     * @param numberOfFloors
-     * @param numberOfRows
-     * @param numberOfPlaces
-     */
-    public SimulatorView(int numberOfFloors, int numberOfRows, int numberOfPlaces) {
+		
         this.numberOfFloors = numberOfFloors;
         this.numberOfRows = numberOfRows;
         this.numberOfPlaces = numberOfPlaces;
@@ -41,7 +36,7 @@ public class SimulatorView extends AbstractView {
         setVisible(true);
 
         updateView();
-    }
+	}
 
     /**
      * Roep de updateView in carParkView.
@@ -188,7 +183,7 @@ public class SimulatorView extends AbstractView {
  * @param location
  * @return true of false
  */
-    private boolean locationIsValid(Location location) {
+    public boolean locationIsValid(Location location) {
         int floor = location.getFloor();
         int row = location.getRow();
         int place = location.getPlace();
@@ -203,10 +198,10 @@ public class SimulatorView extends AbstractView {
      * @author Marc Elzinga
      *
      */
-    private class CarParkView extends JPanel {
+    public class CarParkView{
         
-        private Dimension size;
-        private Image carParkImage;    
+        public Dimension size;
+        public Image carParkImage;    
     
         /**
          * Constructor for objects of class CarPark
@@ -267,7 +262,7 @@ public class SimulatorView extends AbstractView {
         /**
          * Paint a place on this car park view in a given color.
          */
-        private void drawPlace(Graphics graphics, Location location, Color color) {
+        public void drawPlace(Graphics graphics, Location location, Color color) {
             graphics.setColor(color);
             graphics.fillRect(
                     location.getFloor() * 260 + (1 + (int)Math.floor(location.getRow() * 0.5)) * 75 + (location.getRow() % 2) * 20,
