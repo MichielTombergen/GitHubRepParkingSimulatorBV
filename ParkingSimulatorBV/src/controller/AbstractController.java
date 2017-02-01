@@ -1,7 +1,6 @@
 package controller;
 
 import javax.swing.*;
-
 import model.*;
 
 public abstract class AbstractController extends JPanel {
