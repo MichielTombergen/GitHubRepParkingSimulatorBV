@@ -2,6 +2,7 @@ package model;
 
 import model.*;
 import view.*;
+import controller.Controller;
 
 public class Model extends AbstractModel implements Runnable{
 
@@ -39,7 +40,7 @@ public class Model extends AbstractModel implements Runnable{
      */
     private void tick() {
     	advanceTime();
-    	handleExit();
+    	Controller.handleExit();
     	updateViews();
     	// Pause.
         try {
@@ -69,5 +70,78 @@ public class Model extends AbstractModel implements Runnable{
         }
 
     }
+    
+    /**
+     * Auto's arriveren.
+     */
+    public void carsArriving(){
+    	int numberOfCars=getNumberOfCars(weekDayArrivals, weekendArrivals);
+        addArrivingCars(numberOfCars, AD_HOC);    	
+    	numberOfCars=getNumberOfCars(weekDayPassArrivals, weekendPassArrivals);
+        addArrivingCars(numberOfCars, PASS);    	
+    }
 
+    /**
+     * Laat auto's de parkeergarage ingaan.
+     * @param queue
+     */
+    public void carsEntering(CarQueue queue){
+        int i=0;
+        // Remove car from the front of the queue and assign to a parking space.
+    	while (queue.carsInQueue()>0 && 
+    			simulatorView.getNumberOfOpenSpots()>0 && 
+    			i<enterSpeed) {
+            Car car = queue.removeCar();
+            Location freeLocation = simulatorView.getFirstFreeLocation();
+            simulatorView.setCarAt(freeLocation, car);
+            i++;
+        }
+    }
+    
+    /**
+     * Laat de eerste car die weggaat betalen als hij dat niet gedaan heeft anders laat je hem de
+     * parkeergarage verlaten.
+     */
+    public void carsReadyToLeave(){
+        // Add leaving cars to the payment queue.
+        Car car = simulatorView.getFirstLeavingCar();
+        while (car!=null) {
+        	if (car.getHasToPay()){
+	            car.setIsPaying(true);
+	            paymentCarQueue.addCar(car);
+        	}
+        	else {
+        		carLeavesSpot(car);
+        	}
+            car = simulatorView.getFirstLeavingCar();
+        }
+    }
+
+    /**
+     * Laat auto's betalen.
+     */
+    public void carsPaying(){
+        // Let cars pay.
+    	int i=0;
+    	while (paymentCarQueue.carsInQueue()>0 && i < paymentSpeed){
+            Car car = paymentCarQueue.removeCar();
+            // TODO Handle payment.
+            carLeavesSpot(car);
+            i++;
+    	}
+    }
+    
+    /**
+     * Laat auto's weggaan.
+     */
+    public void carsLeaving(){
+        // Let cars leave.
+    	int i=0;
+    	while (exitCarQueue.carsInQueue()>0 && i < exitSpeed){
+            exitCarQueue.removeCar();
+            i++;
+    	}	
+    }
+    
+    
 }
