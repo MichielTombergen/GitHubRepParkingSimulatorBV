@@ -22,12 +22,18 @@ public class Model extends AbstractModel{
 		run=false;
 	}
 	
-	public void run() {
-        for (int i = 0; i < 10000; i++) {
-            tick();
-        }
-    }
-	
+	@Override
+	public void run(){
+		run=true;
+		while(run) {
+	        for (int i = 0; i < 10000; i++) {
+	            tick();
+	        }
+			try {
+				Thread.sleep(10);
+			} catch (Exception e) {} 
+		}
+	}
     /**
      * Laat de tijd tikken en updates de views. 
      */
