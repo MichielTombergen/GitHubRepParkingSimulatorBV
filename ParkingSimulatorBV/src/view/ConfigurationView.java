@@ -1,31 +1,19 @@
 package view;
 
-import java.awt.EventQueue;
-import javax.swing.JFrame;
-import javax.swing.JButton;
-import java.awt.Font;
-import java.awt.Color;
-import java.awt.SystemColor;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import javax.swing.JTextField;
-import javax.swing.JRadioButton;
-import javax.swing.JList;
-import javax.swing.JOptionPane;
-import javax.swing.JTextPane;
-import javax.swing.JTextArea;
-import javax.swing.JRadioButtonMenuItem;
-import javax.swing.JEditorPane;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
-import javax.swing.JMenu;
-import javax.swing.JProgressBar;
+import java.awt.*;
+import javax.swing.*;
+import model.*;
 
-public class ConfigurationView {
+public class ConfigurationView extends AbstractView {
 
 	protected static final String ParentComponent = null;
 	private JFrame frame;
 
+	public ConfigurationView(Model model){
+		super(model);
+		setSize(200, 200);
+	}
+	
 	/**
 	 * Launch the application.
 	 */

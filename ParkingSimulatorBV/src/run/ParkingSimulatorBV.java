@@ -19,8 +19,8 @@ public class ParkingSimulatorBV {
 		controller = new Controller(model);
 		simulatorview = new AbstractView(model);
 		configurationview = new AbstractView(model);
-		screen=new JFrame("Model View Controller/Dynamic Model with thread");
-		screen.setSize(450, 285);
+		screen = new JFrame("ParkingSimulator");
+		screen.setSize(800, 800);
 		screen.setResizable(false);
 		screen.setLayout(null);
 		screen.getContentPane().add(simulatorview);
