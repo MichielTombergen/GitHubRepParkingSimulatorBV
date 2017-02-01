@@ -35,8 +35,6 @@ public class Controller extends AbstractController implements ActionListener {
 		this.setLayout(null);
 		add(start);
 		add(stop);
-		mineen.setBounds(50, 10, 70, 30);
-		pluseen.setBounds(140, 10, 70, 30);
 		start.setBounds(229, 10, 70, 30);
 		stop.setBounds(319, 10, 70, 30);
 
