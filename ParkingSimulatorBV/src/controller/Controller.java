@@ -17,8 +17,8 @@ public class Controller extends AbstractController implements ActionListener {
 	public static final String AD_HOC = "1";
 	public static final String PASS = "2";
 	
-	private CarQueue entranceCarQueue;
-    private CarQueue entrancePassQueue;
+	public CarQueue entranceCarQueue;
+    public CarQueue entrancePassQueue;
     private CarQueue paymentCarQueue;
     private CarQueue exitCarQueue;
     private SimulatorView simulatorView;

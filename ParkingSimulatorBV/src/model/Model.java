@@ -2,7 +2,7 @@ package model;
 
 import model.*;
 import view.*;
-import java.util.Random;
+import java.util.*;
 import controller.*;
 
 public class Model extends AbstractModel implements Runnable{
@@ -22,6 +22,7 @@ public class Model extends AbstractModel implements Runnable{
     int enterSpeed = 3; // number of cars that can enter per minute
     int paymentSpeed = 7; // number of cars that can pay per minute
     int exitSpeed = 5; // number of cars that can leave per minute
+    
 	public Model() {
         entranceCarQueue = new CarQueue();
         entrancePassQueue = new CarQueue();
