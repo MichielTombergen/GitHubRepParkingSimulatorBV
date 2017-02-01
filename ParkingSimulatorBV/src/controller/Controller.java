@@ -9,8 +9,6 @@ public class Controller extends AbstractController implements ActionListener {
 	
 	private static final long serialVersionUID = -7413164724294460746L;
 	
-	private JButton mineen;
-	private JButton pluseen;
 	private JButton start;
 	private JButton stop;
 	
@@ -25,6 +23,11 @@ public class Controller extends AbstractController implements ActionListener {
 	
 	public Controller(Model model) {
 		super(model);
+        entranceCarQueue = new CarQueue();
+        entrancePassQueue = new CarQueue();
+        paymentCarQueue = new CarQueue();
+        exitCarQueue = new CarQueue();
+        simulatorView = new SimulatorView(3, 6, 30);
 		
 		setSize(450, 50);
 		start=new JButton("Start");

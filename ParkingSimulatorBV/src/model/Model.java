@@ -50,7 +50,7 @@ public class Model extends AbstractModel implements Runnable{
     /**
      * Laat de tijd tikken en updates de views. 
      */
-    private void tick() {
+    public void tick() {
     	advanceTime();
     	handleExit();
     	updateViews();
