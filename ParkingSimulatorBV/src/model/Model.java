@@ -1,6 +1,5 @@
 package model;
 
-import model.*;
 import view.*;
 import java.util.*;
 import controller.*;
