@@ -2,7 +2,7 @@ package controller;
 
 import javax.swing.*;
 import model.*;
-import java.awt.*;
+import java.awt.event.*;
 
 public class Controller extends AbstractController implements ActionListener {
 	private static final long serialVersionUID = -7413164724294460746L;
@@ -38,22 +38,16 @@ public class Controller extends AbstractController implements ActionListener {
 	}
 
 	public void actionPerformed(ActionEvent e) {
-		if (e.getSource()==mineen) {
-			model.setAantal(model.getAantal()-1);
-		}
-		
-		if (e.getSource()==pluseen) {
-			model.setAantal(model.getAantal()+1);
-		}
-		
+
 		if (e.getSource()==start) {
 			model.start();
 		}
 		
 		if (e.getSource()==stop) {
 			model.stop();
+			
 		}
+		
 	}
-}
-
+	
 }
