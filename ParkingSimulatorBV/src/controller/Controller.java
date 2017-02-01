@@ -3,6 +3,7 @@ package controller;
 import javax.swing.*;
 import model.*;
 import java.awt.event.*;
+import view.*;
 
 public class Controller extends AbstractController implements ActionListener {
 	private static final long serialVersionUID = -7413164724294460746L;
@@ -10,6 +11,11 @@ public class Controller extends AbstractController implements ActionListener {
 	private JButton pluseen;
 	private JButton start;
 	private JButton stop;
+	private CarQueue entranceCarQueue;
+    private CarQueue entrancePassQueue;
+    private CarQueue paymentCarQueue;
+    private CarQueue exitCarQueue;
+    private SimulatorView simulatorView;
 	
 	public Controller(Model model) {
 		super(model);
@@ -49,5 +55,32 @@ public class Controller extends AbstractController implements ActionListener {
 		}
 		
 	}
+	
+    /**
+     * Laat auto's aankomen en binnengaan.
+     */
+    public void handleEntrance(){
+    	model.carsArriving();
+    	model.carsEntering(entrancePassQueue);
+    	model.carsEntering(entranceCarQueue);  	
+}
+
+    /**
+     * Laat auto's weggaan en betalen.
+     */
+    public void handleExit(){
+    	model.carsReadyToLeave();
+    	model.carsPaying();
+    	model.carsLeaving();
+}
+
+    /**
+     * 
+     */
+    public void updateViews(){
+    	simulatorView.tick();
+    	// Update the car park view.
+    	simulatorView.updateView();
+}
 	
 }
