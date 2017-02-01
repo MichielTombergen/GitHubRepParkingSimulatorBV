@@ -17,10 +17,10 @@ public class ParkingSimulatorBV {
 		
 		model = new Model();
 		controller = new Controller(model);
-		simulatorview = new AbstractView(model);
-		configurationview = new AbstractView(model);
+		simulatorview = new SimulatorView(model);
+		configurationview = new ConfigurationView(model);
 		screen = new JFrame("ParkingSimulator");
-		screen.setSize(800, 800);
+		screen.setSize(450, 285);
 		screen.setResizable(false);
 		screen.setLayout(null);
 		screen.getContentPane().add(simulatorview);
