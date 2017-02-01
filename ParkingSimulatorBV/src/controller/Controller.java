@@ -27,7 +27,6 @@ public class Controller extends AbstractController implements ActionListener {
         entrancePassQueue = new CarQueue();
         paymentCarQueue = new CarQueue();
         exitCarQueue = new CarQueue();
-        simulatorView = new SimulatorView(3, 6, 30);
 		
 		setSize(450, 50);
 		start=new JButton("Start");

@@ -33,11 +33,12 @@ public class SimulatorView extends AbstractView{
         Container contentPane = getContentPane();
         contentPane.add(carParkView, BorderLayout.CENTER);
         pack();
+        
         setVisible(true);
 
         updateView();
 	}
-
+	
     /**
      * Roep de updateView in carParkView.
      */
