@@ -2,7 +2,8 @@ package model;
 
 import model.*;
 import view.*;
-import controller.Controller;
+import java.util.Random;
+import controller.*;
 
 public class Model extends AbstractModel implements Runnable{
 
@@ -10,9 +11,23 @@ public class Model extends AbstractModel implements Runnable{
     private int hour = 0;
     private int minute = 0;
     private int tickPause = 100;
+    
     private boolean run;
 	
+    int weekDayArrivals= 100; // average number of arriving cars per hour
+    int weekendArrivals = 200; // average number of arriving cars per hour
+    int weekDayPassArrivals= 50; // average number of arriving cars per hour
+    int weekendPassArrivals = 5; // average number of arriving cars per hour
+
+    int enterSpeed = 3; // number of cars that can enter per minute
+    int paymentSpeed = 7; // number of cars that can pay per minute
+    int exitSpeed = 5; // number of cars that can leave per minute
 	public Model() {
+        entranceCarQueue = new CarQueue();
+        entrancePassQueue = new CarQueue();
+        paymentCarQueue = new CarQueue();
+        exitCarQueue = new CarQueue();
+        simulatorView = new SimulatorView(3, 6, 30);
 	}
 	
 	public void start() {
@@ -40,7 +55,7 @@ public class Model extends AbstractModel implements Runnable{
      */
     private void tick() {
     	advanceTime();
-    	Controller.handleExit();
+    	handleExit();
     	updateViews();
     	// Pause.
         try {
@@ -142,6 +157,25 @@ public class Model extends AbstractModel implements Runnable{
             i++;
     	}	
     }
-    
-    
+  
+    /**
+     * Bereken het aantal auto's per uur.
+     * @param weekDay
+     * @param weekend
+     * @return het aantal auto's per uur.
+     */
+    private int getNumberOfCars(int weekDay, int weekend){
+        Random random = new Random();
+
+        // Get the average number of cars that arrive per hour.
+        int averageNumberOfCarsPerHour = day < 5
+                ? weekDay
+                : weekend;
+
+        // Calculate the number of cars that arrive this minute.
+        double standardDeviation = averageNumberOfCarsPerHour * 0.3;
+        double numberOfCarsPerHour = averageNumberOfCarsPerHour + random.nextGaussian() * standardDeviation;
+        return (int)Math.round(numberOfCarsPerHour / 60);	
+    }
+   	
 }
