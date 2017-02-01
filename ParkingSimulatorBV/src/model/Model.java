@@ -3,6 +3,7 @@ package model;
 import view.*;
 import java.util.*;
 import controller.*;
+import java.awt.*;
 
 public class Model extends AbstractModel implements Runnable{
 
@@ -150,7 +151,7 @@ public class Model extends AbstractModel implements Runnable{
         // Let cars leave.
     	int i=0;
     	while (exitCarQueue.carsInQueue()>0 && i < exitSpeed){
-            exitCarQueue.removeCar();
+          exitCarQueue.removeCar();
             i++;
     	}	
     }
