@@ -27,10 +27,6 @@ public class Controller extends AbstractController implements ActionListener {
 		super(model);
 		
 		setSize(450, 50);
-		mineen=new JButton("-1");
-		mineen.addActionListener(this);
-		pluseen=new JButton("+1");
-		pluseen.addActionListener(this);
 		start=new JButton("Start");
 		start.addActionListener(this);
 		stop=new JButton("Stop");
