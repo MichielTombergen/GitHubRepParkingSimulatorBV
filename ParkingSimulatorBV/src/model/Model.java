@@ -24,11 +24,7 @@ public class Model extends AbstractModel implements Runnable{
     int exitSpeed = 5; // number of cars that can leave per minute
     
 	public Model() {
-		entranceCarQueue = new CarQueue();
-		entrancePassQueue = new CarQueue();
-		paymentCarQueue = new CarQueue();
-		exitCarQueue = new CarQueue();
-		simulatorView = new SimulatorView(3, 6, 30);
+
 	}
 	
 	public void start() {
