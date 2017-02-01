@@ -1,5 +1,8 @@
 package model;
 
+import model.*;
+import view.*;
+
 public class Model extends AbstractModel{
 
     private int day = 0;
