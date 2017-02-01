@@ -1,6 +1,8 @@
 package controller;
 
 import java.util.Random;
+import model.*;
+import view.*;
 
 public class Simulator {
 
