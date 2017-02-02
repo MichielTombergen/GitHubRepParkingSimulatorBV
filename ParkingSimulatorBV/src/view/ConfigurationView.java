@@ -5,7 +5,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
 import model.*;
-import controller.*;
 
 public class ConfigurationView extends AbstractView implements ActionListener{
 	
@@ -16,6 +15,9 @@ public class ConfigurationView extends AbstractView implements ActionListener{
 	public ConfigurationView(Model model){
 		super(model);
 		setSize(200, 200);
+		
+		initialize();
+		
 	}
 	
 	/**
@@ -25,20 +27,13 @@ public class ConfigurationView extends AbstractView implements ActionListener{
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					ConfigurationView window = new ConfigurationView();
+					ConfigurationView window = new ConfigurationView(null);
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			}
 		});
-	}
-
-	/**
-	 * Create the application.
-	 */
-	public ConfigurationView() {
-		initialize();
 	}
 
 	/**
@@ -56,8 +51,6 @@ public class ConfigurationView extends AbstractView implements ActionListener{
 		btnSubmit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				frame.dispose();
-				Simulator mysimulator = new Simulator();
-				mysimulator.run();
 			}
 		});
 		btnSubmit.setBackground(Color.RED);
