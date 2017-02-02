@@ -3,8 +3,8 @@ package view;
 import java.util.*;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.Component;
 import model.*;
+import java.*;
 
 /**
  * Deze klasse is een subklasse van JFrame
@@ -12,8 +12,7 @@ import model.*;
 public class SimulatorView extends AbstractView{
 	private static final long serialVersionUID = -2767764579227738552L;
 	
-    public view.SimulatorView.CarParkView CarParkView;
-    public Component carParkView;
+    public CarParkView carParkView;
     private int numberOfFloors;
     private int numberOfRows;
     private int numberOfPlaces;
@@ -30,10 +29,10 @@ public class SimulatorView extends AbstractView{
         this.numberOfOpenSpots =numberOfFloors*numberOfRows*numberOfPlaces;
         cars = new Car[numberOfFloors][numberOfRows][numberOfPlaces];
         
-        this.CarParkView = new CarParkView();
+        carParkView = new CarParkView();
 
-        Container container = getContentPane();
-        container.add(BorderLayout.CENTER, carParkView);
+        Container contentPane = getContentPane();
+        contentPane.add(carParkView, BorderLayout.CENTER);
         pack();
         
         setVisible(true);
@@ -41,13 +40,11 @@ public class SimulatorView extends AbstractView{
         updateView();
 	}
 	
-	
-	
     /**
      * Roep de updateView in carParkView.
      */
     public void updateView() {
-        CarParkView.updateView();
+        carParkView.updateView();
     }
     
     /**
@@ -278,4 +275,3 @@ public class SimulatorView extends AbstractView{
     }
 
 }
-
