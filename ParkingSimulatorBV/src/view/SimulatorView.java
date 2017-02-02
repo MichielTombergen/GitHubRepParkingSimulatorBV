@@ -1,8 +1,11 @@
 package view;
 
 import java.util.*;
+import javax.swing.JFrame;
 import javax.swing.*;
+import javax.swing.JPanel;
 import java.awt.*;
+import java.awt.Component;
 import model.*;
 import java.*;
 
@@ -12,7 +15,8 @@ import java.*;
 public class SimulatorView extends AbstractView{
 	private static final long serialVersionUID = -2767764579227738552L;
 	
-    public CarParkView carParkView;
+    public view.SimulatorView.CarParkView CarParkView;
+    public Component carParkView;
     private int numberOfFloors;
     private int numberOfRows;
     private int numberOfPlaces;
@@ -29,10 +33,10 @@ public class SimulatorView extends AbstractView{
         this.numberOfOpenSpots =numberOfFloors*numberOfRows*numberOfPlaces;
         cars = new Car[numberOfFloors][numberOfRows][numberOfPlaces];
         
-        carParkView = new CarParkView();
+        this.CarParkView = new CarParkView();
 
-        Container contentPane = getContentPane();
-        contentPane.add(carParkView, BorderLayout.CENTER);
+        Container container = getContentPane();
+        container.add(BorderLayout.CENTER, carParkView);
         pack();
         
         setVisible(true);
@@ -40,11 +44,13 @@ public class SimulatorView extends AbstractView{
         updateView();
 	}
 	
+	
+	
     /**
      * Roep de updateView in carParkView.
      */
     public void updateView() {
-        carParkView.updateView();
+        CarParkView.updateView();
     }
     
     /**
@@ -275,3 +281,4 @@ public class SimulatorView extends AbstractView{
     }
 
 }
+
