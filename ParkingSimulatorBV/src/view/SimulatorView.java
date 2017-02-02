@@ -32,7 +32,7 @@ public class SimulatorView extends AbstractView{
         carParkView = new CarParkView();
 
         Container contentPane = getContentPane();
-        contentPane.add(carParkView, BorderLayout.CENTER);
+        mcontentPane.add(carParkView, BorderLayout.CENTER);
         pack();
         
         setVisible(true);
