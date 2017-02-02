@@ -2,8 +2,6 @@ package model;
 
 import view.*;
 import java.util.*;
-import controller.*;
-import java.awt.*;
 
 public class Model extends AbstractModel implements Runnable{
 
@@ -14,14 +12,17 @@ public class Model extends AbstractModel implements Runnable{
     
 	public static final String AD_HOC = "1";
 	public static final String PASS = "2";
+	public static final String ABO = "3";
     
     private boolean run;
 	
     int weekDayArrivals= 100; // average number of arriving cars per hour
     int weekendArrivals = 200; // average number of arriving cars per hour
-    int weekDayPassArrivals= 50; // average number of arriving cars per hour
+    int weekDayPassArrivals= 75; // average number of arriving cars per hour
     int weekendPassArrivals = 5; // average number of arriving cars per hour
-
+    int weekDayAboArrivals= 50;// average number of arriving cars per hour
+    int weekendAboArrivals= 10;//average number of arriving cars per hour
+    
     int enterSpeed = 3; // number of cars that can enter per minute
     int paymentSpeed = 7; // number of cars that can pay per minute
     int exitSpeed = 5; // number of cars that can leave per minute
@@ -105,7 +106,9 @@ public class Model extends AbstractModel implements Runnable{
     	int numberOfCars=getNumberOfCars(weekDayArrivals, weekendArrivals);
 		addArrivingCars(numberOfCars, AD_HOC);    	
     	numberOfCars=getNumberOfCars(weekDayPassArrivals, weekendPassArrivals);
-        addArrivingCars(numberOfCars, PASS);    	
+        addArrivingCars(numberOfCars, PASS);   
+    	numberOfCars=getNumberOfCars(weekDayPassArrivals, weekendPassArrivals);
+        addArrivingCars(numberOfCars, ABO);  
     }
 
     /**
