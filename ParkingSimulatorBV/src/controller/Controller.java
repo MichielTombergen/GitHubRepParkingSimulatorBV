@@ -3,7 +3,6 @@ package controller;
 import javax.swing.*;
 import model.*;
 import java.awt.event.*;
-import view.*;
 
 public class Controller extends AbstractController implements ActionListener {
 	
