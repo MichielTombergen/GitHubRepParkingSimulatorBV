@@ -12,22 +12,9 @@ public class Controller extends AbstractController implements ActionListener {
 	private JButton start;
 	private JButton stop;
 	
-	public static final String AD_HOC = "1";
-	public static final String PASS = "2";
-	
-	public CarQueue entranceCarQueue;
-    public CarQueue entrancePassQueue;
-    public CarQueue paymentCarQueue;
-    public CarQueue exitCarQueue;
-    public SimulatorView simulatorView;
-	
 	public Controller(Model model) {
 		super(model);
-        entranceCarQueue = new CarQueue();
-        entrancePassQueue = new CarQueue();
-        paymentCarQueue = new CarQueue();
-        exitCarQueue = new CarQueue();
-		
+
 		setSize(450, 50);
 		start=new JButton("Start");
 		start.addActionListener(this);
@@ -55,15 +42,6 @@ public class Controller extends AbstractController implements ActionListener {
 		}
 		
 	}
-	
-    /**
-     * Laat auto's aankomen en binnengaan.
-     */
-    public void handleEntrance(){
-    	model.carsArriving();
-    	model.carsEntering(entrancePassQueue);
-    	model.carsEntering(entranceCarQueue);  	
-}
 
     /**
      * Laat auto's weggaan en betalen.
@@ -82,36 +60,5 @@ public class Controller extends AbstractController implements ActionListener {
     	// Update the car park view.
     	simulatorView.updateView();
 }
-	
-    /**
-     * Verwijder een auto van zijn locatie en laat hem in de rij van de uitgang staan. 
-     * @param car
-     */
-    public void carLeavesSpot(Car car){
-    	simulatorView.removeCarAt(car.getLocation());
-        exitCarQueue.addCar(car);
-    }
-   
-    /**
-     * Voeg aankomende auto's toe.
-     * @param numberOfCars
-     * @param type
-     */
-    public void addArrivingCars(int numberOfCars, String type){
-        // Add the cars to the back of the queue.
-    	switch(type) {
-    	case AD_HOC: 
-            for (int i = 0; i < numberOfCars; i++) {
-            	entranceCarQueue.addCar(new AdHocCar());
-            }
-            break;
-    	case PASS:
-            for (int i = 0; i < numberOfCars; i++) {
-            	entrancePassQueue.addCar(new ParkingPassCar());
-            }
-            break;	            
-    	}
-    
-    }
     
 }

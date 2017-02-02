@@ -12,6 +12,9 @@ public class Model extends AbstractModel implements Runnable{
     private int minute = 0;
     private int tickPause = 100;
     
+	public static final String AD_HOC = "1";
+	public static final String PASS = "2";
+    
     private boolean run;
 	
     int weekDayArrivals= 100; // average number of arriving cars per hour
@@ -23,8 +26,19 @@ public class Model extends AbstractModel implements Runnable{
     int paymentSpeed = 7; // number of cars that can pay per minute
     int exitSpeed = 5; // number of cars that can leave per minute
     
+	public CarQueue entranceCarQueue;
+    public CarQueue entrancePassQueue;
+    public CarQueue paymentCarQueue;
+    public CarQueue exitCarQueue;
+    public SimulatorView simulatorView;
+    
 	public Model() {
 
+        entranceCarQueue = new CarQueue();
+        entrancePassQueue = new CarQueue();
+        paymentCarQueue = new CarQueue();
+        exitCarQueue = new CarQueue();
+		
 	}
 	
 	public void start() {
@@ -176,4 +190,46 @@ public class Model extends AbstractModel implements Runnable{
         return (int)Math.round(numberOfCarsPerHour / 60);	
     }
    	
+    
+    /**
+     * Voeg aankomende auto's toe.
+     * @param numberOfCars
+     * @param type
+     */
+    public void addArrivingCars(int numberOfCars, String type){
+        // Add the cars to the back of the queue.
+    	switch(type) {
+    	case AD_HOC: 
+            for (int i = 0; i < numberOfCars; i++) {
+            	entranceCarQueue.addCar(new AdHocCar());
+            }
+            break;
+    	case PASS:
+            for (int i = 0; i < numberOfCars; i++) {
+            	entrancePassQueue.addCar(new ParkingPassCar());
+            }
+            break;	            
+    	}
+    
+    }
+    
+	
+    /**
+     * Laat auto's aankomen en binnengaan.
+     */
+    public void handleEntrance(){
+    	carsArriving();
+    	carsEntering(entrancePassQueue);
+    	carsEntering(entranceCarQueue);  	
+}
+	
+    /**
+     * Verwijder een auto van zijn locatie en laat hem in de rij van de uitgang staan. 
+     * @param car
+     */
+    public void carLeavesSpot(Car car){
+    	simulatorView.removeCarAt(car.getLocation());
+        exitCarQueue.addCar(car);
+    }
+    
 }
