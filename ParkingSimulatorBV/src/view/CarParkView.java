@@ -13,14 +13,16 @@ import model.*;
  *
  */
 public class CarParkView extends AbstractView{
-    
-    public Dimension size;
+	private static final long serialVersionUID = -8361891335421146700L;
+	
+	public static Dimension size;
     public Image carParkImage;    
 
     /**
      * Constructor for objects of class CarPark
      */
-    public CarParkView() {
+    public CarParkView(Model model){
+    	super(model);
         size = new Dimension(0, 0);
     }
 

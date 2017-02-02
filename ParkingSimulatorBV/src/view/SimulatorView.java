@@ -1,7 +1,6 @@
 package view;
 
 import model.*;
-import java.awt.*;
 
 /**
  * Deze klasse is 
@@ -19,48 +18,43 @@ public class SimulatorView extends AbstractView{
 		super(model);
 		setSize(200, 200);
 		
+        this.numberOfFloors = numberOfFloors;
+        this.numberOfRows = numberOfRows;
+        this.numberOfPlaces = numberOfPlaces;
+        this.numberOfOpenSpots = numberOfFloors*numberOfRows*numberOfPlaces;
+        cars = new Car[numberOfFloors][numberOfRows][numberOfPlaces];
+        
+        carParkView = new CarParkView();
+
+        Container contentPane = getContentPane();
+        contentPane.add(carParkView, BorderLayout.CENTER);
+        pack();
+        setVisible(true);
+
+        updateView();
+		
 	}
 	
-    /**
-     * Roep de updateView in carParkView.
-     */
     public void updateView() {
-        updateView();
+        carParkView.updateView();
     }
     
-    /**
-     * @return Het aantal verdiepingen.
-     */
 	public int getNumberOfFloors() {
         return numberOfFloors;
     }
 
-	/**
-	 * @return het aantal rijen.
-	 */
     public int getNumberOfRows() {
         return numberOfRows;
     }
 
-    /**
-     * @return het aantal plekken.
-     */
     public int getNumberOfPlaces() {
         return numberOfPlaces;
     }
 
-    /*
-     * @return het aantal open plekken.
-     */
     public int getNumberOfOpenSpots(){
     	return numberOfOpenSpots;
     }
     
-    /**
-     * 
-     * @param location
-     * @return de auto die op die locatie zit.
-     */
     public Car getCarAt(Location location) {
         if (!locationIsValid(location)) {
             return null;
@@ -68,12 +62,6 @@ public class SimulatorView extends AbstractView{
         return cars[location.getFloor()][location.getRow()][location.getPlace()];
     }
 
-    /**
-     * Plaats een auto op een bepaalde locatie.
-     * @param location
-     * @param car
-     * @return true of false of er wel of niet een auto kan worden geplaatst.
-     */
     public boolean setCarAt(Location location, Car car) {
         if (!locationIsValid(location)) {
             return false;
@@ -88,11 +76,6 @@ public class SimulatorView extends AbstractView{
         return false;
     }
 
-    /**
-     * Verwijder een auto van een bepaalde locatie.
-     * @param location
-     * @return
-     */
     public Car removeCarAt(Location location) {
         if (!locationIsValid(location)) {
             return null;
@@ -107,10 +90,6 @@ public class SimulatorView extends AbstractView{
         return car;
     }
 
-    /**
-     * Wat is de eerste vrije locatie.
-     * @return de eerste vrije locatie.
-     */
     public Location getFirstFreeLocation() {
         for (int floor = 0; floor < getNumberOfFloors(); floor++) {
             for (int row = 0; row < getNumberOfRows(); row++) {
@@ -125,10 +104,6 @@ public class SimulatorView extends AbstractView{
         return null;
     }
 
-    /**
-     * Welke auto gaat als eerstvolgende weg?
-     * @return de auto die weggaat.
-     */
     public Car getFirstLeavingCar() {
         for (int floor = 0; floor < getNumberOfFloors(); floor++) {
             for (int row = 0; row < getNumberOfRows(); row++) {
@@ -144,10 +119,6 @@ public class SimulatorView extends AbstractView{
         return null;
     }
 
-    /**
-     * Deze methode zorgt ervoor dat voor elke auto de methode tick() in Car word aangeroepen
-     * en de tijd laat tikken. en dus van de minutesleft variabele word afgetrokken.
-     */
     public void tick() {
         for (int floor = 0; floor < getNumberOfFloors(); floor++) {
             for (int row = 0; row < getNumberOfRows(); row++) {
@@ -161,12 +132,8 @@ public class SimulatorView extends AbstractView{
             }
         }
     }
-/**
- * Klopt de gegevenlocatie? Is de waarde groter dan 0 en kleiner dan het aantal plekken?
- * @param location
- * @return true of false
- */
-    public boolean locationIsValid(Location location) {
+
+    private boolean locationIsValid(Location location) {
         int floor = location.getFloor();
         int row = location.getRow();
         int place = location.getPlace();
