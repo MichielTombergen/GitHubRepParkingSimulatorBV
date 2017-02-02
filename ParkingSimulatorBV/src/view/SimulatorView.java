@@ -1,13 +1,10 @@
 package view;
 
 import java.util.*;
-import javax.swing.JFrame;
 import javax.swing.*;
-import javax.swing.JPanel;
 import java.awt.*;
 import java.awt.Component;
 import model.*;
-import java.*;
 
 /**
  * Deze klasse is een subklasse van JFrame
