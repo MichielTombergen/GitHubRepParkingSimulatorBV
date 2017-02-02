@@ -3,25 +3,29 @@ package view;
 import javax.swing.*;
 import model.*;
 
-public abstract class AbstractView extends JFrame implements Observer {
+public abstract class AbstractView extends JPanel implements Observer {
 	private static final long serialVersionUID = -2767764579227738552L;
-	private AbstractModel observable;
+	private static Observable observable;
 
-	public AbstractView(){
-		
+	public static Observable getObservable(){
+		return observable;
 	}
 	
-	public AbstractView(AbstractModel observable) {
+	public static void setObservable(Observable observable) {
+		AbstractView.observable = observable;
+	}
+	
+	public AbstractView(Observable observable){
 		observe(observable);
 	}
 	
-	public void observe(AbstractModel observable){
-		this.observable = observable;
-		observable.registerObserver(this);
+	public void observe(Observable observable){
+		setObservable(observable);
+		getObservable().registerObserver(this);
 	}
 	
 	public Model getModel() {
-		return (Model) observable;
+		return (Model) getObservable();
 	}
 	
 	public void updateView() {

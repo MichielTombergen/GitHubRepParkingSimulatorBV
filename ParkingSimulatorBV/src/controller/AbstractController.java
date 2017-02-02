@@ -1,10 +1,9 @@
 package controller;
 
-import javax.swing.*;
+import java.awt.event.ActionListener;
 import model.*;
 
-public abstract class AbstractController extends JPanel {
-	private static final long serialVersionUID = 4941730006940737729L;
+public abstract class AbstractController implements ActionListener{
 	protected Model model;
 	
 	public AbstractController(Model model) {

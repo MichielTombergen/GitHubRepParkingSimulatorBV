@@ -1,39 +1,44 @@
 package run;
 
-import javax.swing.*;
 import controller.*;
 import model.*;
 import view.*;
 
-public class ParkingSimulatorBV {
+/**
+ * The MVCDynamicModelThreadGenaralized application illustrates the 
+ * Model View Controller concept via a simple Swing application.
+ * Two displays are updated via shared model that implements a Thread.
+ * 
+ * The MVC uses a pull implementation of the observer pattern. Whenever 
+ * changes in the model occur the observers pull the relevant information 
+ * from the model.
+ * 
+ * In this example the controller is not aware of the view, since no 
+ * GUI elements need to be modified based on the state of the model.
+ * 
+ * @author ronaldvandijk
+ * @version 01-02-2017
+ */
 
-	private Model model;
-	private Controller controller;
-	private AbstractView simulatorview;
-	private AbstractView configurationview;
-	private JFrame screen;
+public class ParkingSimulatorBV{
 	
-	public ParkingSimulatorBV() {
+	/**
+	 * Constructor voor het opzetten van de applicatie.
+	 */
+	public ParkingSimulatorBV(){
 		
-		model = new Model();
-		controller = new Controller(model);
-		screen = new JFrame("ParkingSimulator SimulatorScreen");
-		simulatorview = new SimulatorView(model, 3, 6, 30, screen);
-		/*configurationview = new ConfigurationView(model);
+		Model model = new Model();
+		Controller controller = new Controller(model);
+		AbstractView simulatorview = new SimulatorView(model);
+		AbstractView configurationview = new SimulatorView(model);
 		
-		screen.setSize(450, 285);
-		screen.setResizable(false);
-		screen.setLayout(null);
-		screen.getContentPane().add(simulatorview);
-		screen.getContentPane().add(configurationview);
-		screen.getContentPane().add(controller);
-		simulatorview.setBounds(10, 10, 200, 200);
-		configurationview.setBounds(230, 10, 200, 200);
-		controller.setBounds(0, 210, 450, 50);
-		screen.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		screen.setVisible(true);*/
+		new MainWindow(simulatorview, configurationview, controller);
 	}
 	
+	/**
+	 * Main method to start the application
+	 * @param args no arguments are required.
+	 */
 	public static void main(String[] args) {
 		new ParkingSimulatorBV();
 	}

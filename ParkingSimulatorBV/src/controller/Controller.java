@@ -1,45 +1,31 @@
 package controller;
 
-import javax.swing.*;
 import model.*;
 import java.awt.event.*;
 
+/**
+ * The controller reacts on input received from the view. 
+ * Here implementation is provided for the actionPerformed method
+ * that is implemented in the AbstractController.
+ * @author MichielTombergen
+ * @version 02-02-2017
+ */
 public class Controller extends AbstractController implements ActionListener {
-	
-	private static final long serialVersionUID = -7413164724294460746L;
-	
-	private JButton start;
-	private JButton stop;
 	
 	public Controller(Model model) {
 		super(model);
 
-		setSize(450, 50);
-		start=new JButton("Start");
-		start.addActionListener(this);
-		stop=new JButton("Stop");
-		stop.addActionListener(this);
-		
-		this.setLayout(null);
-		add(start);
-		add(stop);
-		start.setBounds(229, 10, 70, 30);
-		stop.setBounds(319, 10, 70, 30);
-
-		setVisible(true);
 	}
 
 	public void actionPerformed(ActionEvent e) {
-
-		if (e.getSource()==start) {
+		
+		if (e.getActionCommand().equals("Start")) {
 			model.start();
 		}
 		
-		if (e.getSource()==stop) {
+		if (e.getActionCommand().equals("Stop")) {
 			model.stop();
-			
 		}
 		
 	}
-
 }
