@@ -232,4 +232,23 @@ public class Model extends AbstractModel implements Runnable{
         exitCarQueue.addCar(car);
     }
     
+
+    /**
+     * 
+     */
+    public void updateViews(){
+    	simulatorView.tick();
+    	// Update the car park view.
+    	simulatorView.updateView();
+}
+
+    /**
+     * Laat auto's weggaan en betalen.
+     */
+    public void handleExit(){
+    	carsReadyToLeave();
+    	carsPaying();
+    	carsLeaving();
+}
+    
 }

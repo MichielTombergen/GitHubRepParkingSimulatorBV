@@ -43,22 +43,4 @@ public class Controller extends AbstractController implements ActionListener {
 		
 	}
 
-    /**
-     * Laat auto's weggaan en betalen.
-     */
-    public void handleExit(){
-    	model.carsReadyToLeave();
-    	model.carsPaying();
-    	model.carsLeaving();
-}
-
-    /**
-     * 
-     */
-    public void updateViews(){
-    	simulatorView.tick();
-    	// Update the car park view.
-    	simulatorView.updateView();
-}
-    
 }
