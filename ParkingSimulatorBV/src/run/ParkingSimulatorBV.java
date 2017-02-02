@@ -17,9 +17,10 @@ public class ParkingSimulatorBV {
 		
 		model = new Model();
 		controller = new Controller(model);
-		simulatorview = new SimulatorView(model, 3, 6, 30, screen);
-		configurationview = new ConfigurationView(model);
 		screen = new JFrame("ParkingSimulator SimulatorScreen");
+		simulatorview = new SimulatorView(model, 3, 6, 30, screen);
+		/*configurationview = new ConfigurationView(model);
+		
 		screen.setSize(450, 285);
 		screen.setResizable(false);
 		screen.setLayout(null);
@@ -30,7 +31,7 @@ public class ParkingSimulatorBV {
 		configurationview.setBounds(230, 10, 200, 200);
 		controller.setBounds(0, 210, 450, 50);
 		screen.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		screen.setVisible(true);
+		screen.setVisible(true);*/
 	}
 	
 	public static void main(String[] args) {

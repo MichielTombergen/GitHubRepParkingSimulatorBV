@@ -12,14 +12,14 @@ import java.*;
 public class SimulatorView extends AbstractView{
 	private static final long serialVersionUID = -2767764579227738552L;
 	
-    public CarParkView carParkView;
+    private CarParkView carParkView;
     private int numberOfFloors;
     private int numberOfRows;
     private int numberOfPlaces;
     private int numberOfOpenSpots;
     private Car[][][] cars;
     
-	public SimulatorView(Model model, int numberOfFloors, int numberOfRows, int numberOfPlaces, Component CarParkView) {
+	public SimulatorView(Model model, int numberOfFloors, int numberOfRows, int numberOfPlaces, JFrame mainWindow) {
 		super(model);
 		setSize(200, 200);
 		
@@ -29,10 +29,9 @@ public class SimulatorView extends AbstractView{
         this.numberOfOpenSpots =numberOfFloors*numberOfRows*numberOfPlaces;
         cars = new Car[numberOfFloors][numberOfRows][numberOfPlaces];
         
-        carParkView = new CarParkView();
+        this.carParkView = new CarParkView();
 
-        Container contentPane = getContentPane();
-        contentPane.add(CarParkView, BorderLayout.CENTER);
+       mainWindow.getContentPane().add(carParkView);
         pack();
         
         setVisible(true);
@@ -200,7 +199,7 @@ public class SimulatorView extends AbstractView{
      * @author Marc Elzinga
      *
      */
-    public class CarParkView{
+    public class CarParkView extends AbstractView{
         
         public Dimension size;
         public Image carParkImage;    

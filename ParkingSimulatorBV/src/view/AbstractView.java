@@ -7,6 +7,10 @@ public abstract class AbstractView extends JFrame implements Observer {
 	private static final long serialVersionUID = -2767764579227738552L;
 	private AbstractModel observable;
 
+	public AbstractView(){
+		
+	}
+	
 	public AbstractView(AbstractModel observable) {
 		observe(observable);
 	}
