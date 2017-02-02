@@ -19,7 +19,7 @@ public class SimulatorView extends AbstractView{
     private int numberOfOpenSpots;
     private Car[][][] cars;
     
-	public SimulatorView(Model model, int numberOfFloors, int numberOfRows, int numberOfPlaces) {
+	public SimulatorView(Model model, int numberOfFloors, int numberOfRows, int numberOfPlaces, Component CarParkView) {
 		super(model);
 		setSize(200, 200);
 		
@@ -32,7 +32,7 @@ public class SimulatorView extends AbstractView{
         carParkView = new CarParkView();
 
         Container contentPane = getContentPane();
-        mcontentPane.add(carParkView, BorderLayout.CENTER);
+        contentPane.add(CarParkView, BorderLayout.CENTER);
         pack();
         
         setVisible(true);
