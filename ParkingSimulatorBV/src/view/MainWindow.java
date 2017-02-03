@@ -17,7 +17,7 @@ public class MainWindow {
 	private JFrame mainwindow;
 	private JPanel buttonpane;
 	
-	public MainWindow(AbstractView leftpane, AbstractView rightpane, Controller controller){
+	public MainWindow(SimulatorView simulatorview, ConfigurationView configurationview, Controller controller){
 		
 		mainwindow=new JFrame("ParkingSimulator 2k17");
 		mainwindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -26,17 +26,17 @@ public class MainWindow {
 		//mainwindow.setIconImage(icon.getImage());
 		
 		
-		mainwindow.setSize(1000, 400);
+		mainwindow.setSize(500, 1000);
 		mainwindow.setResizable(false);
 		mainwindow.setLayout(null);
-		mainwindow.getContentPane().add(leftpane);
-		mainwindow.getContentPane().add(rightpane);
+		mainwindow.getContentPane().add(simulatorview);
+		mainwindow.getContentPane().add(configurationview);
 		
-		leftpane.setBounds(10, 10, 200, 200);
-		rightpane.setBounds(230, 10, 200, 200);
+		simulatorview.setBounds(0, 0, 500, 500);
+		configurationview.setBounds(0, 500, 500, 500);
 				
 		buttonpane = new JPanel();
-		buttonpane.setBounds(0, 210, 450, 50);
+		buttonpane.setBounds(300, 800, 800, 800);
 		buttonpane.setSize(450, 50);
 		mainwindow.getContentPane().add(buttonpane);
 		

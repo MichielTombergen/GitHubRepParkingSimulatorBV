@@ -6,15 +6,14 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 import model.*;
 
-public class ConfigurationView extends AbstractView implements ActionListener{
+public class ConfigurationView extends JPanel implements ActionListener{
 	
 	private static final long serialVersionUID = 5455934187803194147L;
 	protected static final String ParentComponent = null;
 	private JFrame frame;
 
-	public ConfigurationView(Model model){
-		super(model);
-		setSize(200, 200);
+	public ConfigurationView(){
+		setSize(500, 500);
 		
 		initialize();
 		
@@ -27,7 +26,7 @@ public class ConfigurationView extends AbstractView implements ActionListener{
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					ConfigurationView window = new ConfigurationView(null);
+					ConfigurationView window = new ConfigurationView();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();

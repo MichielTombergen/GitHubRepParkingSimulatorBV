@@ -3,7 +3,7 @@ package view;
 import javax.swing.*;
 import model.*;
 
-public abstract class AbstractView extends JPanel implements Observer {
+/**public abstract class AbstractView extends JPanel implements Observer {
 	private static final long serialVersionUID = -2767764579227738552L;
 	private static Observable observable;
 
