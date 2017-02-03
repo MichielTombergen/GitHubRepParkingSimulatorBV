@@ -29,8 +29,8 @@ public class ParkingSimulatorBV{
 		
 		Model model = new Model();
 		Controller controller = new Controller(model);
-		AbstractView simulatorview = new SimulatorView(model);
-		AbstractView configurationview = new SimulatorView(model);
+		AbstractView simulatorview = new SimulatorView(model, null);
+		AbstractView configurationview = new ConfigurationView(model);
 		
 		new MainWindow(simulatorview, configurationview, controller);
 	}
