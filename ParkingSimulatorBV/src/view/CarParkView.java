@@ -75,7 +75,27 @@ public class CarParkView extends AbstractView{
         repaint();
     }
 
-    /**
+    private int getNumberOfFloors() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	private int getNumberOfRows() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	private int getNumberOfPlaces() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	private Car getCarAt(Location location) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	/**
      * Paint a place on this car park view in a given color.
      */
     public void drawPlace(Graphics graphics, Location location, Color color) {
